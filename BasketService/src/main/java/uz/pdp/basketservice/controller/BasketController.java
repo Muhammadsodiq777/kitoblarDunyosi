@@ -1,7 +1,7 @@
-package uz.pdp.bookserviice.controller;
+package uz.pdp.basketservice.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class BookController {
+public class BasketController {
 }
