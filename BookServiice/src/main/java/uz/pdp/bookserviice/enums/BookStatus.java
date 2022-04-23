@@ -1,4 +1,4 @@
-package uz.pdp.userservice.enums;
+package uz.pdp.bookserviice.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
