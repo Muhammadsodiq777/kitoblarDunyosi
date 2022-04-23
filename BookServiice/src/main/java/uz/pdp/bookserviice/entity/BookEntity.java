@@ -23,7 +23,16 @@ public class BookEntity extends BaseEntity{
     private String isbn;
 
     @Column(nullable = false)
+    private Long code;
+
+    @Column(nullable = false)
+    private double weight;
+
+    @Column(nullable = false)
     private String authorName;
+
+    @Column(nullable = false)
+    private Double price;
 
     @Override
     public boolean equals(Object o) {
