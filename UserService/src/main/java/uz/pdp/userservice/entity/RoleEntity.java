@@ -7,8 +7,7 @@ import uz.pdp.userservice.entity.base.BaseEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "roles")

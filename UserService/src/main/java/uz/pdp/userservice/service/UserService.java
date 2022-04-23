@@ -7,8 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.pdp.userservice.entity.UserEntity;
-import uz.pdp.userservice.payload.DTOs.UserDTO;
-import uz.pdp.userservice.payload.responce.ApiResponce;
+import uz.pdp.userservice.payload.responce.ApiResponse;
 import uz.pdp.userservice.repository.UserRepository;
 
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
-
     private final UserRepository userRepository;
 
     public List<UserEntity> getAllUsers() {
@@ -28,44 +26,44 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public ApiResponce addUser(UserDTO userDto) {
+    public ApiResponse addUser(UserEntity userDto) {
         boolean existsByPhoneNumber = userRepository.existsByPhoneNumber(userDto.getPhoneNumber());
 
         if (existsByPhoneNumber) {
 
-            return new ApiResponce("not exiist", false);
+            return new ApiResponse("not exiist", false);
         }
 
         UserEntity customer = new UserEntity();
         userDetails(customer, userDto);
         userRepository.save(customer);
-        return new ApiResponce("hhjh", true, customer);
+        return new ApiResponse("hhjh", true, customer);
     }
 
-    public void userDetails(UserEntity user, UserDTO userDto) {
+    public void userDetails(UserEntity user, UserEntity userDto) {
         user.setPassword(userDto.getPassword());
         user.setPhoneNumber(userDto.getPhoneNumber());
     }
 
-    public ApiResponce editUser(UserDTO userDto, Long id) {
+    public ApiResponse editUser(UserEntity userDto, Long id) {
 
         boolean byPhoneNumberAndIdNot = userRepository.existsByPhoneNumberAndIdNot(userDto.getPhoneNumber(), id);
         if (byPhoneNumberAndIdNot) {
-            return new ApiResponce("no this cusytomer", false);
+            return new ApiResponse("no this cusytomer", false);
         }
         Optional<UserEntity> optionalUser = userRepository.findById(id);
         if (optionalUser.isEmpty())
-            return new ApiResponce("not found", false);
+            return new ApiResponse("not found", false);
 
             UserEntity user = optionalUser.get();
             userDetails(user, userDto);
             UserEntity savedUser = userRepository.save(user);
-            return new ApiResponce("hghgfhgfhh", true, savedUser);
+            return new ApiResponse("hghgfhgfhh", true, savedUser);
         }
 
-        public ApiResponce deleteUser (Long id){
+        public ApiResponse deleteUser (Long id){
             userRepository.deleteById(id);
-            return new ApiResponce("deleted", true);
+            return new ApiResponse("deleted", true);
         }
 
         @Override

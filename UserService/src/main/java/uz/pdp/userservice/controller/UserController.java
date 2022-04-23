@@ -8,8 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import uz.pdp.userservice.entity.UserEntity;
-import uz.pdp.userservice.payload.DTOs.UserDTO;
-import uz.pdp.userservice.payload.responce.ApiResponce;
+import uz.pdp.userservice.payload.responce.ApiResponse;
 import uz.pdp.userservice.service.UserService;
 
 import java.util.List;
@@ -22,14 +21,14 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/add")
-    public HttpEntity addUser(@RequestBody UserDTO user){
-        ApiResponce apiResponce = userService.addUser(user);
+    public HttpEntity addUser(@RequestBody UserEntity user){
+        ApiResponse apiResponce = userService.addUser(user);
         return ResponseEntity.status(apiResponce.isSuccess()? HttpStatus.OK:HttpStatus.CONFLICT).body(apiResponce);
     }
 
     @PostMapping("/edit/{id}")
-    public HttpEntity editUser(@PathVariable Long id, @RequestBody UserDTO user){
-        ApiResponce responce = userService.editUser(user, id);
+    public HttpEntity editUser(@PathVariable Long id, @RequestBody UserEntity user){
+        ApiResponse responce = userService.editUser(user, id);
         return ResponseEntity.status(responce.isSuccess()? HttpStatus.OK:HttpStatus.CONFLICT).body(responce);
     }
 
@@ -47,7 +46,7 @@ public class UserController {
 
     @DeleteMapping("/delete/{id}")
     public HttpEntity deleteUser(@PathVariable Long id){
-        ApiResponce apiResponce = userService.deleteUser(id);
+        ApiResponse apiResponce = userService.deleteUser(id);
         return ResponseEntity.status(apiResponce.isSuccess()? HttpStatus.OK:HttpStatus.CONFLICT).body(apiResponce);
     }
 
