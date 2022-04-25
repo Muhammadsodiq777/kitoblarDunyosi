@@ -25,9 +25,16 @@
     <modules>
         <module>UserService</module>
         <module>eureka_client/eureka_client</module>
+        <module>fein-client/fein-client</module>
     </modules>
 
+
     <dependencies>
+        <dependency>
+            <groupId>uz.pdp</groupId>
+            <artifactId>fein_client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>

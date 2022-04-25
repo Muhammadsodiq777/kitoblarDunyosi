@@ -6,18 +6,14 @@
         <groupId>uz.pdp</groupId>
         <artifactId>kitoblarDunyosi</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
-    <artifactId>BookServiice</artifactId>
+    <artifactId>fein_client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>BookServiice</name>
-    <description>BookServiice</description>
+    <name>fein-client</name>
+    <description>fein-client</description>
     <properties>
         <java.version>17</java.version>
     </properties>
-    <dependencies>
-
-
-    </dependencies>
 
 </project>
